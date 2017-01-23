@@ -11,7 +11,7 @@ def run_stuff():
     print("This is `run()` from ", __file__)
 
     x = np.random.rand(10)
-    print("Unsorted input: ", x)
+    print("\n\tUnsorted input: ", x)
 
-    print("Bubble sort output: ", bubblesort(x))
-    print("Quick sort output: ", quicksort(x))
+    print("\n\tBubble sort output: ", bubblesort(x))
+    print("\n\tQuick sort output: ", quicksort(x))

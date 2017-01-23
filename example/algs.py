@@ -8,11 +8,23 @@ def pointless_sort(x):
     return np.array([1,2,3])
 
 def bubblesort(x):
-    """
-    Describe how you are sorting `x`
-    """
-
-    return x
+	"""
+	Sorts numpy array `x` by swapping adjacent elements when needed.
+	Runtime goes with O(n^2).
+	"""
+	
+	print("Unsorted Input :   ", x)
+	
+	for i in range(0,np.size(x)):
+		for j in range(np.size(x),i+1,-1):
+			if x[j-1]<x[j-2]:
+				temp = x[j-1]
+				x[j-1] = x[j-2]
+				x[j-2] = temp
+				
+	print("\nSorted Output :  ", x, "\n\n")
+	
+	return x
 
 def quicksort(x):
     """
