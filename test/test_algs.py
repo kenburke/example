@@ -31,4 +31,4 @@ def test_quicksort():
     x = np.array([1,2,4,0,1])
     # for now, just attempt to call the quicksort function, should
     # actually check output
-    algs.quicksort(x,0,np.size(x)-1)
+    algs.quicksort(x)

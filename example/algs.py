@@ -52,12 +52,15 @@ def qsPartition(x, first, last):
 			
 	
 
-def quicksort(x, first, last):
+def quicksort(x, first=0, last=-1):
     """
     Sorts numpy array `x` from index "first" to "last"
     	through "divide/conquer" recursive partitioning in place.
     Average runtime goes with O(n*lg n), worst-case n^2.
     """
+    
+    if last==-1:
+    	last = np.size(x)-1
     
     if first<last:
     	pivot = qsPartition(x,first,last)
