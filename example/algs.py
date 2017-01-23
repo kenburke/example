@@ -26,10 +26,43 @@ def bubblesort(x):
 	
 	return x
 
-def quicksort(x):
+def qsPartition(x, first, last):
+	"""
+	Partition step of quicksort function.
+	Makes sure all components of one partition is less than the other.
+	Input: numpy array x, with starting and ending indeces.
+	Output: index of partition ("pivot").
+	"""
+	
+	pivotVal = x[last]		#arbitrarily call the last value the "pivot value"
+	pivotLoc = first-1		#this will move as we swap low values into start of x
+	
+	for ii in range(first,last):		# go through x (O(n))
+		if x[ii] <= pivotVal:
+			pivotLoc += 1				# if your value is less than pivot value,
+			t = x[ii]					# move the pivot location up one slot
+			x[ii] = x[pivotLoc]			# and swap x[pivotLoc] with your value ii
+			x[pivotLoc] = t
+	
+	tt = x[pivotLoc+1]					# finally, put the pivot value (which was
+	x[pivotLoc+1] = x[last]				# arbitrarily chosen as the last value) and
+	x[last] = tt						# swap it into the pivotLoc
+	
+	return (pivotLoc + 1)				# return the pivot location for quicksort
+			
+	
+
+def quicksort(x, first, last):
     """
-    Describe how you are sorting `x`
+    Sorts numpy array `x` from index "first" to "last"
+    	through "divide/conquer" recursive partitioning in place.
+    Average runtime goes with O(n*lg n), worst-case n^2.
     """
+    
+    if first<last:
+    	pivot = qsPartition(x,first,last)
+    	quicksort(x,first,pivot-1)
+    	quicksort(x,pivot+1,last)
 
     return x
 
