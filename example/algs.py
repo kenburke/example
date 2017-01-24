@@ -107,8 +107,3 @@ def quicksort(x, first=None, last=None):
         
     return conditionals, assignments
     
-# print("Unsorted Input :\n", x)
-# quicksort(x)
-# print("\nSorted Output :\n", x)
-# print("\nConditionals :  ", conditionals)
-# print("Assignments :  ", assignments, "\n\n")
