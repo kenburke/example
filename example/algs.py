@@ -20,7 +20,10 @@ def bubblesort(x):
     assignments = 0             # for measuring complexity
     conditionals = 0
     
-    assert x.dtype == 'int64' or x.dtype == 'float64', 'Must contain only numbers'
+    conditionals += 1
+    if not x.dtype == 'int64' or x.dtype == 'float64':
+        print("Must have only numbers.")
+    	return conditionals, assignments
       
     for i in range(0,np.size(x)):
         for j in range(np.size(x),i+1,-1):

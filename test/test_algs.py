@@ -40,11 +40,10 @@ def test_bubblesort():
     algs.bubblesort(x)
     assert np.array_equal(x, np.array([-10,-7,-2,0,5,12]))
 
-    #test char
+    #test char (should not affect it)
     x = np.array([10,2,5,7,'r'])
     algs.bubblesort(x)
-    assert np.array_equal(x, np.array([-10,-7,-2,0,5,12]))
-    assert 1==2
+    assert np.array_equal(x, np.array([10,2,5,7,'r']))
 
 def test_quicksort():
 
