@@ -44,7 +44,7 @@ def test_bubblesort():
     x = np.array([10,2,5,7,'r'])
     algs.bubblesort(x)
     assert np.array_equal(x, np.array([-10,-7,-2,0,5,12]))
-    
+    assert 1==2
 
 def test_quicksort():
 
