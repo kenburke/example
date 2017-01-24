@@ -39,8 +39,8 @@ def test_bubblesort():
     x = np.array([-10,12,-2,5,-7,0])
     algs.bubblesort(x)
     assert np.array_equal(x, np.array([-10,-7,-2,0,5,12]))
-
-    #test char (should not affect it)
+    
+    #test char (should not change it)
     x = np.array([10,2,5,7,'r'])
     algs.bubblesort(x)
     assert np.array_equal(x, np.array([10,2,5,7,'r']))
