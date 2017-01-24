@@ -1,7 +1,6 @@
 import numpy as np
+from timeit import default_timer as timer
 
-assignments = 0
-conditionals = 0
 
 def pointless_sort(x):
     """
@@ -17,7 +16,8 @@ def bubblesort(x):
     Runtime goes with O(n^2).
     """
     
-    assignments = 0             # for measuring complexity
+    start = timer()         # for measuring complexity
+    assignments = 0             
     conditionals = 0
     
     conditionals += 1
@@ -36,8 +36,12 @@ def bubblesort(x):
                 temp = x[j-1]
                 x[j-1] = x[j-2]
                 x[j-2] = temp
+    
+    end = timer()
+    
+    elapsedTime = np.round(end-start,3)     # in seconds
                    
-    return conditionals, assignments
+    return conditionals, assignments, elapsedTime
 
 def qsPartition(x, first, last):
 
@@ -47,6 +51,7 @@ def qsPartition(x, first, last):
     Input: numpy array x, with starting and ending indeces.
     Output: index of partition ("pivot").
     """
+    
     conditionals = 0
     assignments = 0
     
@@ -71,9 +76,11 @@ def qsPartition(x, first, last):
     tt = x[pivotLoc+1]                  # finally, put the pivot value (which was
     x[pivotLoc+1] = x[last]             # arbitrarily chosen as the last value) and
     x[last] = tt                        # swap it into the pivotLoc
+    
 
-    return (pivotLoc + 1), conditionals, assignments # return the pivot location for quicksort
-        
+
+    # return the pivot location for quicksort
+    return (pivotLoc + 1), conditionals, assignments       
     
 
 def quicksort(x, first=None, last=None):
@@ -85,8 +92,10 @@ def quicksort(x, first=None, last=None):
     Average runtime goes with O(n*lg n), worst-case n^2.
     """
     
+    start = timer()
     assignments = 0
     conditionals = 0
+    t1, t2, t3 = (0,0,0)
     
     conditionals += 1
     if not x.dtype == 'int64' and not x.dtype == 'float64':
@@ -109,12 +118,15 @@ def quicksort(x, first=None, last=None):
         pivot, c, a = qsPartition(x,first,last)
         conditionals += c
         assignments += a
-        c,a = quicksort(x,first,pivot-1)
+        c,a,t = quicksort(x,first,pivot-1)
         conditionals += c
         assignments += a
-        c,a = quicksort(x,pivot+1,last)
+        c,a,t = quicksort(x,pivot+1,last)
         conditionals += c
         assignments += a
+    
+    end = timer()
+    elapsedTime = end-start              # in seconds
         
-    return conditionals, assignments
+    return conditionals, assignments, elapsedTime
     

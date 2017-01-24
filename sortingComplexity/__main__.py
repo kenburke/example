@@ -1,5 +1,7 @@
 # this file is only called when the package is called from the command
 # line
-from .run import run_stuff
+from .run import basic_test, complexity_test
 
-run_stuff()
+basic_test()
+
+complexity_test()
