@@ -19,6 +19,8 @@ def bubblesort(x):
     
     assignments = 0             # for measuring complexity
     conditionals = 0
+    
+    assert x.dtype == 'int64' or x.dtype == 'float64', 'Must contain only numbers'
       
     for i in range(0,np.size(x)):
         for j in range(np.size(x),i+1,-1):
