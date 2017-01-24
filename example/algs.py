@@ -88,6 +88,12 @@ def quicksort(x, first=None, last=None):
     assignments = 0
     conditionals = 0
     
+    conditionals += 1
+    if not x.dtype == 'int64' or x.dtype == 'float64':
+        print("Must have only numbers.")
+        return conditionals, assignments
+
+    
     conditionals += 2
     if first is None:
         assignments += 1
