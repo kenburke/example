@@ -1,9 +1,11 @@
-# example
+# Sorting Algorithms Homework
 
 [![Build
 Status](https://travis-ci.org/kenburke/example.svg?branch=master)](https://travis-ci.org/kenburke/example)
 
 Example python project with testing.
+
+Examines bubblesort and quicksort complexity.
 
 ## usage
 
@@ -29,3 +31,7 @@ python -m pytest
 ```
 
 from the root directory of this project.
+
+## interactive
+
+This homework comes with a Jupiter notebook in `sortingAlgorithms.ipynb`.
