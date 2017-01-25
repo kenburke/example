@@ -3,6 +3,7 @@
 # the same directory as this one.
 
 import numpy as np
+from math import log
 import sys
 import matplotlib.pyplot as plt
 from .algs import quicksort, bubblesort
@@ -12,7 +13,7 @@ def basic_test():
     This function is called in `__main__.py`
     Tests the sorting algorithms on small datasets for visual inspection of results.
     """
-    print("This is `run()` from ", __file__)
+    print("\nThis is `run()` from ", __file__)
 
     unsorted = np.random.rand(10)
     print("\n\tUnsorted input: ", unsorted)
@@ -26,6 +27,8 @@ def basic_test():
     print("\n\tQuicksort output: ", qsSorted)
     
     print("\n\tBubblesort output == Quicksort output?  ", np.array_equal(bsSorted, qsSorted))
+    
+    return np.array_equal(bsSorted, qsSorted)
       
 def complexity_experiment():
     """
@@ -90,6 +93,13 @@ def complexity_experiment():
     return complexity, inputData
 
 def complexity_visualize(complexity, inputData):
+    """
+    Plots results of complexity_experiment()
+    """
+    
+    
+    ##### Organize Data
+    
     
     #first get averages and stdev of assign, cond and time for each input data size for bubblesort
     meanBSAssign = np.average(complexity['assign'][0,:,:],axis=1)
@@ -108,8 +118,11 @@ def complexity_visualize(complexity, inputData):
     stdQSTime = np.std(complexity['time'][1,:,:],axis=1)
     
     
-    fig = plt.figure(figsize=(20,10))
-    st = fig.suptitle('Runtime, Assignments, Conditionals Comparison\nBubblesort (red) vs Quicksort (blue)\n',
+    ##### Plot all results, on log and scalar scales
+    
+    
+    fig1 = plt.figure(figsize=(20,10))
+    st = fig1.suptitle('Runtime, Assignments, Conditionals Comparison\nBubblesort (red) vs Quicksort (blue)\n',
         fontsize="x-large")
     
     #plot Runtime Differences (log scale)
@@ -183,11 +196,44 @@ def complexity_visualize(complexity, inputData):
     plt.show()
 
     st.set_y(0.95)
-    fig.subplots_adjust(top=0.85)
+    fig1.subplots_adjust(top=0.85)
     
-    fig.savefig("test.png")
+    fig1.savefig("allComplexities.png")
     
-    return
+    
+    ##### Plot time results on log-log scale, to show it's a power function
+    
+    #generate approximate functions for N^2 and N*lgN times (hand-tuned constants)
+    
+    approxSquareComparison = np.array(inputData['sizes'])**2/(1500000.)
+    logInput = [log(y,2) for y in inputData['sizes']]
+    nLogNComparison = np.array(inputData['sizes'])*np.array(logInput)/(600000.)
+    
+    #plot data alongside estimates
+    
+    fig2 = plt.figure(figsize=(10,5))
+    st = fig2.suptitle('Runtime on log-log axes\nBubblesort (red) vs Quicksort (blue) : N^2 (solid black) vs N*lgN (dashed black)',
+        fontsize="large")
+    
+    plt.errorbar(inputData['sizes'],meanBSTime,yerr=stdBSTime,color="r")
+    plt.errorbar(inputData['sizes'],meanQSTime,yerr=stdQSTime,color="b")
+    plt.plot(inputData['sizes'],approxSquareComparison,'k-')
+    plt.plot(inputData['sizes'],nLogNComparison,'k--')
+        
+    plt.yscale('log')
+    plt.xscale('log')
+    plt.ylabel('Runtime (seconds, log)')
+    plt.xlabel('Input Data Size (log)')
+        
+    plt.axis([0.95*min(inputData['sizes']),1.1*max(inputData['sizes']),
+        0.95*min(min(meanBSTime),min(meanQSTime)),1.8*max(max(meanBSTime),max(meanQSTime))])  
+    
+    #show and save  
+                    
+    plt.show()    
+    fig2.savefig("timeComplexityLogLog.png")
+    
+    
 
 def complexity_test():
 
