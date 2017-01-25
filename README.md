@@ -1,7 +1,7 @@
 # Sorting Algorithms Homework
 
 [![Build
-Status](https://travis-ci.org/kenburke/example.svg?branch=master)](https://travis-ci.org/kenburke/example)
+Status](https://travis-ci.org/kenburke/sortingAlgorithms.svg?branch=master)](https://travis-ci.org/kenburke/sortingAlgorithms)
 
 Example python project with continuous integration testing.
 
