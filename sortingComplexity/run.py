@@ -36,7 +36,7 @@ def complexity_experiment():
     the sorting algorithms as a function of input data size.
     """
     
-    inputDataSizes = [100,200,300,400,500,600]#,700,800,900,1000]
+    inputDataSizes = [100,200,300,400,500,600,700,800,900,1000]
     repsPerInputSize = 100
     
     assignments = np.zeros((2,len(inputDataSizes),repsPerInputSize))
@@ -226,7 +226,7 @@ def complexity_visualize(complexity, inputData):
     plt.xlabel('Input Data Size (log)')
         
     plt.axis([0.95*min(inputData['sizes']),1.1*max(inputData['sizes']),
-        0.95*min(min(meanBSTime),min(meanQSTime)),1.8*max(max(meanBSTime),max(meanQSTime))])  
+        0.01*min(min(meanBSTime),min(meanQSTime)),1.8*max(max(meanBSTime),max(meanQSTime))])  
     
     #show and save  
                     
