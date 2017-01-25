@@ -3,7 +3,7 @@
 [![Build
 Status](https://travis-ci.org/kenburke/example.svg?branch=master)](https://travis-ci.org/kenburke/example)
 
-Example python project with testing.
+Example python project with continuous integration testing.
 
 Examines bubblesort and quicksort complexity.
 
@@ -16,10 +16,10 @@ conda install --yes --file requirements.txt
 ```
 
 to install all the dependencies in `requirements.txt`. Then the package's
-main function (located in `example/__main__.py`) can be run as follows
+main function (located in `sortingComplexity/__main__.py`) can be run as follows
 
 ```
-python -m example
+python -m sortingComplexity
 ```
 
 ## testing
