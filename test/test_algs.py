@@ -13,6 +13,8 @@ def test_pointless_sort():
 
     # check that pointless_sort still returns [1,2,3]
     assert np.array_equal(algs.pointless_sort(x), np.array([1,2,3]))
+    
+    assert 1 == 2
 
 def test_bubblesort():
 
