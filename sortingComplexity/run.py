@@ -243,6 +243,6 @@ def complexity_test():
 
 def update_progress(progress):
     sys.stdout.write('\r')
-    sys.stdout.write('[{0}{1}] {2}%'.format('#'*(progress//2),' '*(50-progress//2),progress))    
+    sys.stdout.write('[{0}{1}] {2}%'.format('#'*(progress//2),' '*(50-progress//2),progress,progress))    
     sys.stdout.flush()
     

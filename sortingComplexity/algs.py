@@ -43,7 +43,7 @@ def bubblesort(x):
                    
     return conditionals, assignments, elapsedTime
 
-def qsPartition(x, first, last):
+def partition(x, first, last):
 
     """
     Partition step of quicksort function.
@@ -115,7 +115,7 @@ def quicksort(x, first=None, last=None):
     if first<last:
         assignments += 7
         
-        pivot, c, a = qsPartition(x,first,last)
+        pivot, c, a = partition(x,first,last)
         conditionals += c
         assignments += a
         c,a,t = quicksort(x,first,pivot-1)
