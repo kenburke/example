@@ -1,13 +1,4 @@
 import numpy as np
-from timeit import default_timer as timer
-
-
-def pointless_sort(x):
-    """
-    This function always returns the same values to show how testing
-    works, check out the `test/test_alg.py` file to see.
-    """
-    return np.array([1,2,3])
 
 def bubblesort(x):
 
@@ -16,7 +7,6 @@ def bubblesort(x):
     Runtime goes with O(n^2).
     """
     
-    start = timer()         # for measuring complexity
     assignments = 0             
     conditionals = 0
     
@@ -32,16 +22,10 @@ def bubblesort(x):
             
             if x[j-1]<x[j-2]:
             
-                assignments += 3
-                temp = x[j-1]
-                x[j-1] = x[j-2]
-                x[j-2] = temp
-    
-    end = timer()
-    
-    elapsedTime = np.round(end-start,3)     # in seconds
-                   
-    return conditionals, assignments, elapsedTime
+                assignments += 2
+                x[j-2], x[j-1] = x[j-1], x[j-2]     #flip 'em
+                       
+    return conditionals, assignments
 
 def partition(x, first, last):
 
@@ -64,12 +48,9 @@ def partition(x, first, last):
         conditionals += 1
         if x[ii] <= pivotVal:
             
-            assignments += 4
-            
-            pivotLoc += 1               # if your value is less than pivot value,
-            t = x[ii]                   # move the pivot location up one slot
-            x[ii] = x[pivotLoc]         # and swap x[pivotLoc] with your value ii
-            x[pivotLoc] = t
+            assignments += 3                        # if your value is less than pivot value,
+            pivotLoc += 1                           # move the pivot location up one slot
+            x[pivotLoc], x[ii] = x[ii], x[pivotLoc] # and swap x[pivotLoc] with your value ii
     
     assignments += 3
     
@@ -92,10 +73,8 @@ def quicksort(x, first=None, last=None):
     Average runtime goes with O(n*lg n), worst-case n^2.
     """
     
-    start = timer()
     assignments = 0
     conditionals = 0
-    t1, t2, t3 = (0,0,0)
     
     conditionals += 1
     if not x.dtype == 'int64' and not x.dtype == 'float64':
@@ -118,15 +97,13 @@ def quicksort(x, first=None, last=None):
         pivot, c, a = partition(x,first,last)
         conditionals += c
         assignments += a
-        c,a,t = quicksort(x,first,pivot-1)
+        c,a = quicksort(x,first,pivot-1)
         conditionals += c
         assignments += a
-        c,a,t = quicksort(x,pivot+1,last)
+        c,a = quicksort(x,pivot+1,last)
         conditionals += c
         assignments += a
     
-    end = timer()
-    elapsedTime = end-start              # in seconds
         
-    return conditionals, assignments, elapsedTime
+    return conditionals, assignments
     

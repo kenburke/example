@@ -6,6 +6,7 @@ import numpy as np
 from math import log
 import sys
 import matplotlib.pyplot as plt
+from timeit import default_timer as timer
 from .algs import quicksort, bubblesort
 
 def basic_test():
@@ -56,10 +57,18 @@ def complexity_experiment():
         #run bubblesort many times for each input size
         for j in range(0,repsPerInputSize):
             data = np.random.rand(inputDataSizes[i])
-            c, a, t = bubblesort(data)
+            
+            #time
+            start = timer()
+            
+            c, a = bubblesort(data)
+            
+            end = timer()
+            time[0,i,j] = np.round(end-start,3)     # in seconds
+            
+            #record conditionals and assignments
             conditionals[0,i,j] = c
             assignments[0,i,j,] = a
-            time[0,i,j] = t
             
         progress = checkpoints[str(i)]
         if str(i) in checkpoints.keys():
@@ -76,10 +85,18 @@ def complexity_experiment():
         #run quicksort many times for each input size
         for j in range(0,repsPerInputSize):
             data = np.random.rand(inputDataSizes[i])
-            c, a, t = quicksort(data)
+            
+            #time
+            start = timer()
+            
+            c, a = quicksort(data)
+            
+            end = timer()
+            time[1,i,j] = np.round(end-start,3)     # in seconds
+
+            #record conditionals and assignments
             conditionals[1,i,j] = c
             assignments[1,i,j] = a
-            time[1,i,j] = t
 
         progress = checkpoints[str(i)]    
         if str(i) in checkpoints.keys():
