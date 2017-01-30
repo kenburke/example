@@ -7,6 +7,7 @@ from math import log
 import sys
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
+import progressbar as pb
 from .algs import quicksort, bubblesort
 
 def basic_test():
@@ -44,7 +45,13 @@ def complexity_experiment():
     conditionals = np.zeros((2,len(inputDataSizes),repsPerInputSize))
     time = np.zeros((2,len(inputDataSizes),repsPerInputSize))
     
-    progress = 0
+#    progress = 0
+    bar = pb.ProgressBar(widgets=[
+        ' [', pb.Timer(), '] ',
+        pb.Bar(),
+        ' (', pb.ETA(), ') ',
+    ])
+    
     checkpoints = {'0':4,'1':8,'2':16,'3':24,'4':36,'5':48,'6':60,'7':72,'8':84,'9':100}
 
     print("\n------------------------------------------------\n")        
@@ -52,7 +59,7 @@ def complexity_experiment():
     print("\tinputDataSizes = ", inputDataSizes)
     print("\trepsPerInputSize = ", repsPerInputSize,"\n")
 
-    for i in range(0,len(inputDataSizes)):
+    for i in bar(range(0,len(inputDataSizes))):
 
         #run bubblesort many times for each input size
         for j in range(0,repsPerInputSize):
@@ -70,17 +77,23 @@ def complexity_experiment():
             conditionals[0,i,j] = c
             assignments[0,i,j,] = a
             
-        progress = checkpoints[str(i)]
-        if str(i) in checkpoints.keys():
-            update_progress(progress)
+#         progress = checkpoints[str(i)]
+#         if str(i) in checkpoints.keys():
+#             update_progress(progress)
     
     print("\n------------------------------------------------\n")        
     print("\tTesting Quicksort Complexity:")
     print("\tinputDataSizes = ", inputDataSizes)
     print("\trepsPerInputSize = ", repsPerInputSize,"\n")
-    progress = 0
+    
+#    progress = 0
+    bar = pb.ProgressBar(widgets=[
+        ' [', pb.Timer(), '] ',
+        pb.Bar(),
+        ' (', pb.ETA(), ') ',
+    ])
 
-    for i in range(0,len(inputDataSizes)):
+    for i in bar(range(0,len(inputDataSizes))):
     
         #run quicksort many times for each input size
         for j in range(0,repsPerInputSize):
@@ -98,9 +111,9 @@ def complexity_experiment():
             conditionals[1,i,j] = c
             assignments[1,i,j] = a
 
-        progress = checkpoints[str(i)]    
-        if str(i) in checkpoints.keys():
-            update_progress(progress)
+#         progress = checkpoints[str(i)]    
+#         if str(i) in checkpoints.keys():
+#             update_progress(progress)
     
     print("\n------------------------------------------------\n")        
     
@@ -215,7 +228,7 @@ def complexity_visualize(complexity, inputData):
     st.set_y(0.95)
     fig1.subplots_adjust(top=0.85)
     
-    fig1.savefig("allComplexities.png")
+    fig1.savefig("plots/allComplexities.png")
     
     
     ##### Plot time results on log-log scale, to show it's a power function
@@ -248,7 +261,7 @@ def complexity_visualize(complexity, inputData):
     #show and save  
                     
     plt.show()    
-    fig2.savefig("timeComplexityLogLog.png")
+    fig2.savefig("plots/timeComplexityLogLog.png")
     
     
 
