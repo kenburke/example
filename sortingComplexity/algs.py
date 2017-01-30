@@ -20,7 +20,7 @@ def bubblesort(x):
     assignments = 0             
     conditionals = 0
     
-    conditionals += 1
+    conditionals += 2
     if not x.dtype == 'int64' and not x.dtype == 'float64':
         print("Must have only numbers.")
         return conditionals, assignments
