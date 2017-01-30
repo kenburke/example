@@ -25,44 +25,8 @@ def bubblesort(x):
                 assignments += 2
                 x[j-2], x[j-1] = x[j-1], x[j-2]     #flip 'em
                        
-    return conditionals, assignments
+    return conditionals, assignments    
 
-def partition(x, first, last):
-
-    """
-    Partition step of quicksort function.
-    Makes sure all components of one partition is less than the other.
-    Input: numpy array x, with starting and ending indeces.
-    Output: index of partition ("pivot").
-    """
-    
-    conditionals = 0
-    assignments = 0
-    
-    assignments += 2
-    pivotVal = x[last]      #arbitrarily call the last value the "pivot value"
-    pivotLoc = first-1      #this will move as we swap low values into start of x
-    
-    for ii in range(first,last):        # go through x (O(n))
-    
-        conditionals += 1
-        if x[ii] <= pivotVal:
-            
-            assignments += 3                        # if your value is less than pivot value,
-            pivotLoc += 1                           # move the pivot location up one slot
-            x[pivotLoc], x[ii] = x[ii], x[pivotLoc] # and swap x[pivotLoc] with your value ii
-    
-    assignments += 3
-    
-    tt = x[pivotLoc+1]                  # finally, put the pivot value (which was
-    x[pivotLoc+1] = x[last]             # arbitrarily chosen as the last value) and
-    x[last] = tt                        # swap it into the pivotLoc
-    
-
-
-    # return the pivot location for quicksort
-    return (pivotLoc + 1), conditionals, assignments       
-    
 
 def quicksort(x, first=None, last=None):
 
@@ -106,4 +70,39 @@ def quicksort(x, first=None, last=None):
     
         
     return conditionals, assignments
+
+
+def partition(x, first, last):
+
+    """
+    Partition step of quicksort function.
+    Makes sure all components of one partition is less than the other.
+    Input: numpy array x, with starting and ending indeces.
+    Output: index of partition ("pivot").
+    """
     
+    conditionals = 0
+    assignments = 0
+    
+    assignments += 2
+    pivotVal = x[last]      #arbitrarily call the last value the "pivot value"
+    pivotLoc = first-1      #this will move as we swap low values into start of x
+    
+    for ii in range(first,last):        # go through x (O(n))
+    
+        conditionals += 1
+        if x[ii] <= pivotVal:
+            
+            assignments += 3                        # if your value is less than pivot value,
+            pivotLoc += 1                           # move the pivot location up one slot
+            x[pivotLoc], x[ii] = x[ii], x[pivotLoc] # and swap x[pivotLoc] with your value ii
+    
+    assignments += 2
+
+    # finally, put the pivot value (which was arbitrarily chosen as the last value) and
+    # swap it into the pivotLoc    
+    x[pivotLoc+1], x[last] = x[last], x[pivotLoc+1] 
+
+
+    # return the pivot location for quicksort
+    return (pivotLoc + 1), conditionals, assignments       
