@@ -45,21 +45,21 @@ def complexity_experiment():
     conditionals = np.zeros((2,len(inputDataSizes),repsPerInputSize))
     time = np.zeros((2,len(inputDataSizes),repsPerInputSize))
     
-#    progress = 0
-    bar = pb.ProgressBar(widgets=[
-        ' [', pb.Timer(), '] ',
-        pb.Bar(),
-        ' (', pb.ETA(), ') ',
-    ])
+    progress = 0
+#     bar = pb.ProgressBar(widgets=[
+#         ' [', pb.Timer(), '] ',
+#         pb.Bar(),
+#         ' (', pb.ETA(), ') ',
+#     ])
     
-    checkpoints = {'0':4,'1':8,'2':16,'3':24,'4':36,'5':48,'6':60,'7':72,'8':84,'9':100}
+    checkpoints = {'0':1,'1':3,'2':6,'3':12,'4':20,'5':30,'6':44,'7':62,'8':81,'9':100}
 
     print("\n------------------------------------------------\n")        
     print("\tTesting Bubblesort Complexity:")
     print("\tinputDataSizes = ", inputDataSizes)
     print("\trepsPerInputSize = ", repsPerInputSize,"\n")
 
-    for i in bar(range(0,len(inputDataSizes))):
+    for i in range(0,len(inputDataSizes)):
 
         #run bubblesort many times for each input size
         for j in range(0,repsPerInputSize):
@@ -77,23 +77,23 @@ def complexity_experiment():
             conditionals[0,i,j] = c
             assignments[0,i,j,] = a
             
-#         progress = checkpoints[str(i)]
-#         if str(i) in checkpoints.keys():
-#             update_progress(progress)
+        progress = checkpoints[str(i)]
+        if str(i) in checkpoints.keys():
+            update_progress(progress)
     
     print("\n------------------------------------------------\n")        
     print("\tTesting Quicksort Complexity:")
     print("\tinputDataSizes = ", inputDataSizes)
     print("\trepsPerInputSize = ", repsPerInputSize,"\n")
     
-#    progress = 0
-    bar = pb.ProgressBar(widgets=[
-        ' [', pb.Timer(), '] ',
-        pb.Bar(),
-        ' (', pb.ETA(), ') ',
-    ])
+    progress = 0
+#     bar = pb.ProgressBar(widgets=[
+#         ' [', pb.Timer(), '] ',
+#         pb.Bar(),
+#         ' (', pb.ETA(), ') ',
+#     ])
 
-    for i in bar(range(0,len(inputDataSizes))):
+    for i in range(0,len(inputDataSizes)):
     
         #run quicksort many times for each input size
         for j in range(0,repsPerInputSize):
@@ -111,9 +111,9 @@ def complexity_experiment():
             conditionals[1,i,j] = c
             assignments[1,i,j] = a
 
-#         progress = checkpoints[str(i)]    
-#         if str(i) in checkpoints.keys():
-#             update_progress(progress)
+        progress = checkpoints[str(i)]    
+        if str(i) in checkpoints.keys():
+            update_progress(progress)
     
     print("\n------------------------------------------------\n")        
     
@@ -235,9 +235,9 @@ def complexity_visualize(complexity, inputData):
     
     #generate approximate functions for N^2 and N*lgN times (hand-tuned constants)
     
-    approxSquareComparison = np.array(inputData['sizes'])**2/(1500000.)
+    approxSquareComparison = np.array(inputData['sizes'])**2/(1900000.)
     logInput = [log(y,2) for y in inputData['sizes']]
-    nLogNComparison = np.array(inputData['sizes'])*np.array(logInput)/(600000.)
+    nLogNComparison = np.array(inputData['sizes'])*np.array(logInput)/(800000.)
     
     #plot data alongside estimates
     
