@@ -1,6 +1,6 @@
 # python of course and we don't need access to sudo atm
 language: python
-sudo: true
+sudo: false
 
 # emails are annoying
 notifications:
@@ -22,7 +22,7 @@ branches:
 
 # install dependencies listed in requirements
 install: 
-    - sudo apt-get update
+    - apt-get update
     - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     
     - bash miniconda.sh -b -p $HOME/miniconda
