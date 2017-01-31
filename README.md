@@ -15,7 +15,7 @@ To use the package, first create a conda environment
 conda create env
 ```
 
-to install all dependencies outline in `environment.yml`. Then activate the env
+to install all dependencies outlined in `environment.yml`. Then activate the env
 
 ```
 source activate sortingAlgorithms
