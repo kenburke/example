@@ -7,7 +7,6 @@ from math import log
 import sys
 import matplotlib.pyplot as plt
 from timeit import default_timer as timer
-import progressbar as pb
 from .algs import quicksort, bubblesort
 
 def basic_test():
