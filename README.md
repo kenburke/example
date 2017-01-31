@@ -9,14 +9,20 @@ Examines bubblesort and quicksort complexity.
 
 ## usage
 
-To use the package, first run
+To use the package, first create a conda environment
 
 ```
-conda install --yes --file requirements.txt
+conda create env
 ```
 
-to install all the dependencies in `requirements.txt`. Then the package's
-main function (located in `sortingComplexity/__main__.py`) can be run as follows
+to install all dependencies outline in `environment.yml`. Then activate the env
+
+```
+source activate sortingAlgorithms
+```
+
+Then the package's main function (located in `sortingComplexity/__main__.py`) 
+can be run as follows
 
 ```
 python -m sortingComplexity
@@ -35,3 +41,5 @@ from the root directory of this project.
 ## interactive
 
 This homework comes with a Jupiter notebook in `sortingAlgorithms.ipynb`.
+
+It stores output plots describing complexity experiment results in `plots/`.
