@@ -28,6 +28,12 @@ can be run as follows
 python -m sortingComplexity
 ```
 
+or
+
+```
+bash ./RUNME.sh
+```
+
 ## testing
 
 Testing is as simple as running
