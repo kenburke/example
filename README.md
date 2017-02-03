@@ -12,7 +12,7 @@ Examines bubblesort and quicksort complexity.
 To use the package, first create a conda environment
 
 ```
-conda create env
+conda env create
 ```
 
 to install all dependencies outlined in `environment.yml`. Then activate the env
